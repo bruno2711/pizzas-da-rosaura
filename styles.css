@@ -1,15 +1,92 @@
-#sobre
-{
-    background-color: #3910cf;
-    padding: 20px;
+/* 1. Reseta margens e faz html/body ocuparem 100% da altura da tela */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#cardapio
-{
+
+html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+    font-family: apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* 2. Menu fixo no topo da tela */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(134, 37, 46), rgba(108, 27, 34)); /* Cor de fundo do menu */
+    
+    /* Ativa o alinhamento lado a lado e remove a necessidade de padding vertical alto */
+    display: flex;
+    justify-content: space-between; /* Logo na esquerda, links na direita */
+    align-items: center;            /* Centraliza verticalmente */
+    padding: 0 30px;                /* Apenas espaçamento nas laterais */
+    z-index: 1000;
+}
+
+#logo {
+    /* Ajustado para caber perfeitamente dentro dos 60px do header */
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
+header ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 3. Regra principal: Torna cada seção do tamanho de uma tela (100vh) */
+section {
+    min-height: 100vh; /* 100% da altura da janela visível */
+    width: 100%;
+    padding: 80px 20px 20px 20px; /* Padding superior para o menu fixo não cobrir o texto */
+    
+    /* Centraliza o conteúdo no meio de cada "página" */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+/* Suas seções originais */
+#sobre {
+    background-color: rgba(253, 205, 162);
+}
+#sobre img {
+    width: 500px;
+    height: auto;
+    border-radius: 50%;
+}
+#sobre th {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+#cardapio {
     background-color: #d60c0c;
-    padding: 20px;
 }
-#contato
-{
+
+#contato {
     background-color: #179f0b;
-    padding: 20px;
+}
+
+#localizacao {
+    background-color: #2196F3;
 }
