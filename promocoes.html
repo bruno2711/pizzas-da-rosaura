@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoções e cupons | Pizzas da Rosaura</title>
+    <meta name="description" content="Cupons de desconto e promoções ativos da Pizzas da Rosaura, em Guaíba e Eldorado do Sul - RS.">
+    <meta name="theme-color" content="#6c1b22">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a href="index.html" class="marca">
+                <img class="marca-logo" src="images/104330158_2083961038416323_351394347251335109_n.jpg" alt="">
+                <span class="marca-nome">Pizzas da Rosaura</span>
+            </a>
+
+            <button class="menu-botao" aria-expanded="false" aria-controls="menu-principal">
+                <span class="visualmente-oculto">Abrir menu</span>
+                <span class="menu-barra"></span>
+                <span class="menu-barra"></span>
+                <span class="menu-barra"></span>
+            </button>
+
+            <nav id="menu-principal" class="menu" aria-label="Navegação principal">
+                <ul class="menu-l-links">
+                    <li><a href="index.html#cardapio">Cardápio</a></li>
+                    <li><a href="index.html#unidades">Unidades</a></li>
+                    <li><a href="promocoes.html" aria-current="page">Promoções</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+                <a class="botao botao-claro" href="pedido.html">Pedir agora</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo" class="container pagina-interna">
+
+        <div class="cabecalho-interno">
+            <p class="selo">Promoções</p>
+            <h1>Cupons ativos</h1>
+            <p class="interno-lead">Copie o código e digite na hora do pedido. O desconto já entra no total e vai
+                escrito na mensagem do WhatsApp.</p>
+        </div>
+
+        <div class="cupons-lista" id="cupons-lista"></div>
+
+        <div class="vazio" id="cupons-vazio" hidden>
+            <p>Não há cupom ativo no momento.</p>
+            <a class="botao" href="pedido.html">Fazer pedido sem cupom</a>
+        </div>
+
+        <div class="pagina-interna-cta">
+            <a class="botao" href="pedido.html">Montar meu pedido</a>
+            <a class="botao botao-pequeno" href="index.html#cardapio">Ver cardápio</a>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <p class="rodape-marca">Pizzas da Rosaura</p>
+            <p>Pizzas pré-assadas em Guaíba e Eldorado do Sul - RS</p>
+            <p>Sex a Dom, das 19h às 00h &middot; (51) 3178.8425</p>
+            <p class="rodape-legal">&copy; 2026 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="dados-menu.js"></script>
+    <script>
+        (function () {
+            'use strict';
+            const P = window.PIZZARIA;
+            const lista = document.getElementById('cupons-lista');
+            const vazio = document.getElementById('cupons-vazio');
+
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+
+            function vigente(c) {
+                if (c.ativo === false) return false;
+                if (c.validoAte && new Date(c.validoAte + 'T00:00:00') < hoje) return false;
+                return true;
+            }
+
+            const validos = (P.cupons || []).filter(vigente);
+
+            if (!validos.length) {
+                vazio.hidden = false;
+            } else {
+                validos.forEach((c) => {
+                    const card = document.createElement('article');
+
+                    const codigo = document.createElement('p');
+                    codigo.className = 'cupom-cartao-codigo';
+                    codigo.textContent = c.codigo;
+
+                    const desc = document.createElement('p');
+                    desc.className = 'cupom-cartao-desc';
+                    desc.textContent = c.descricao;
+                    // só o que a descrição não já diz
+                    const regras = [];
+                    if (c.tipo === 'item' && c.alvo) {
+                        regras.push('Válido em: ' + c.alvo);
+                    }
+                    if (c.minimo) {
+                        regras.push('Pedido mínimo de R$ ' + (c.minimo / 100).toFixed(2).replace('.', ','));
+                    }
+                    if (c.validoAte) {
+                        regras.push('Válido até ' + c.validoAte.split('-').reverse().join('/'));
+                    }
+
+                    const listaRegras = document.createElement('ul');
+                    listaRegras.className = 'cupom-cartao-regras';
+                    regras.forEach((r) => {
+                        const li = document.createElement('li');
+                        li.textContent = r;
+                        listaRegras.appendChild(li);
+                    });
+
+                    const usar = document.createElement('a');
+                    usar.className = 'botao botao-pequeno';
+                    usar.href = 'pedido.html';
+                    usar.textContent = 'Usar no pedido';
+
+                    card.append(codigo, desc, listaRegras, usar);
+                    lista.appendChild(card);
+                });
+            }
+
+            // mesmo menu recolhível da página inicial
+            const botao = document.querySelector('.menu-botao');
+            const menu = document.getElementById('menu-principal');
+            botao.addEventListener('click', () => {
+                const aberto = menu.classList.toggle('aberto');
+                botao.setAttribute('aria-expanded', String(aberto));
+            });
+            menu.addEventListener('click', (e) => {
+                if (!e.target.closest('a')) return;
+                menu.classList.remove('aberto');
+                botao.setAttribute('aria-expanded', 'false');
+            });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça seu pedido | Pizzas da Rosaura</title>
+    <meta name="description" content="Monte seu pedido de pizza na Pizzas da Rosaura, com entrega ou retirada, e envie direto pelo WhatsApp.">
+    <meta name="theme-color" content="#6c1b22">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="pagina-pedido">
+
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a href="index.html" class="marca">
+                <img class="marca-logo" src="images/104330158_2083961038416323_351394347251335109_n.jpg" alt="">
+                <span class="marca-nome">Pizzas da Rosaura</span>
+            </a>
+            <nav class="pedido-menu" aria-label="Navegação principal">
+                <a class="botao botao-claro" href="index.html">Voltar ao site</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo" class="container pedido-pagina">
+
+        <div class="pedido-cabecalho">
+            <p class="selo">Pedido online</p>
+            <h1>Monte seu pedido</h1>
+            <p class="pedido-intro">Escolha o que quiser e envie. Abrimos a conversa no WhatsApp com o pedido já
+                escrito — só falta confirmar com a loja.</p>
+        </div>
+
+        <form id="form-pedido" novalidate>
+
+            <!-- 1. Modalidade -->
+            <fieldset class="etapa">
+                <legend class="etapa-titulo">
+                    <span class="etapa-num">1</span>
+                    <span>Como você quer receber?</span>
+                </legend>
+
+                <div class="opcoes" id="opcoes-modalidade">
+                    <label class="opcao">
+                        <input type="radio" name="modalidade" value="entrega" required>
+                        <span class="opcao-corpo">
+                            <span class="opcao-nome">Entrega</span>
+                            <span class="opcao-detalhe">Levamos até você</span>
+                        </span>
+                    </label>
+                    <label class="opcao">
+                        <input type="radio" name="modalidade" value="retirada" required>
+                        <span class="opcao-corpo">
+                            <span class="opcao-nome">Retirar na loja</span>
+                            <span class="opcao-detalhe">Você busca no balcão</span>
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- 2. Unidade -->
+            <fieldset class="etapa">
+                <legend class="etapa-titulo">
+                    <span class="etapa-num">2</span>
+                    <span>Em qual unidade?</span>
+                </legend>
+                <div class="opcoes opcoes-coluna" id="opcoes-unidade"></div>
+            </fieldset>
+
+            <!-- 3. Endereço -->
+            <fieldset class="etapa etapa-oculta" id="etapa-endereco" hidden>
+                <legend class="etapa-titulo">
+                    <span class="etapa-num">3</span>
+                    <span>Endereço de entrega</span>
+                </legend>
+
+                <div class="campos">
+                    <label class="campo">
+                        <span class="campo-rotulo">Endereço <span class="obrigatorio">*</span></span>
+                        <input type="text" name="endereco" autocomplete="street-address"
+                            placeholder="Rua, número, complemento">
+                    </label>
+                    <label class="campo">
+                        <span class="campo-rotulo">Bairro <span class="obrigatorio">*</span></span>
+                        <input type="text" name="bairro" placeholder="Bairro">
+                    </label>
+                    <label class="campo">
+                        <span class="campo-rotulo">Cidade <span class="obrigatorio">*</span></span>
+                        <input type="text" name="cidade" autocomplete="address-level2" placeholder="Cidade">
+                    </label>
+                    <label class="campo">
+                        <span class="campo-rotulo">Referência <span class="campo-opcional">opcional</span></span>
+                        <input type="text" name="referencia" placeholder="Próximo de, portão, cor da casa…">
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- 4. Itens -->
+            <fieldset class="etapa">
+                <legend class="etapa-titulo">
+                    <span class="etapa-num" id="num-itens">4</span>
+                    <span>Seu pedido</span>
+                </legend>
+
+                <div class="bloco-menu" id="menu-salgadas">
+                    <h2 class="bloco-menu-titulo">Pizzas salgadas</h2>
+                    <div class="grade-selecao" id="lista-salgadas"></div>
+                </div>
+
+                <div class="bloco-menu bloco-menu-doces" id="menu-doces">
+                    <h2 class="bloco-menu-titulo">Pizzas doces</h2>
+                    <div class="grade-selecao" id="lista-doces"></div>
+                </div>
+            </fieldset>
+
+            <!-- 5. Pagamento -->
+            <fieldset class="etapa">
+                <legend class="etapa-titulo">
+                    <span class="etapa-num">5</span>
+                    <span>Forma de pagamento</span>
+                </legend>
+                <div class="opcoes opcoes-coluna" id="opcoes-pagamento"></div>
+                <p class="nota-pagamento" id="nota-pagamento" hidden></p>
+
+                <div class="cupom">
+                    <label class="campo">
+                        <span class="campo-rotulo">Cupom de desconto <span class="campo-opcional">opcional</span></span>
+                        <span class="cupom-linha">
+                            <input type="text" id="cupom-codigo" placeholder="Digite o código"
+                                autocomplete="off" autocapitalize="characters" spellcheck="false">
+                            <button type="button" class="botao botao-pequeno" id="cupom-aplicar">Aplicar</button>
+                        </span>
+                    </label>
+                    <p class="cupom-feedback" id="cupom-feedback" role="status" hidden></p>
+                    <a class="cupom-ver" href="promocoes.html">Ver cupons válidos</a>
+                </div>
+            </fieldset>
+
+            <!-- 6. Dados -->
+            <fieldset class="etapa">
+                <legend class="etapa-titulo">
+                    <span class="etapa-num">6</span>
+                    <span>Seus dados</span>
+                </legend>
+
+                <div class="campos">
+                    <label class="campo">
+                        <span class="campo-rotulo">Seu nome <span class="obrigatorio">*</span></span>
+                        <input type="text" name="nome" autocomplete="name" placeholder="Como podemos te chamar">
+                    </label>
+                    <label class="campo">
+                        <span class="campo-rotulo">Telefone <span class="obrigatorio">*</span></span>
+                        <input type="tel" name="telefone" autocomplete="tel" inputmode="tel"
+                            placeholder="(51) 90000-0000">
+                    </label>
+                    <label class="campo campo-largo">
+                        <span class="campo-rotulo">Observações <span class="campo-opcional">opcional</span></span>
+                        <textarea name="observacoes" rows="3"
+                            placeholder="Ex.: sem cebola, capricha no orégano, telefone toca na portaria…"></textarea>
+                    </label>
+                </div>
+            </fieldset>
+
+        </form>
+    </main>
+
+    <!-- Resumo fixo -->
+    <div class="barra-pedido" id="barra-pedido" hidden>
+        <div class="barra-conteudo">
+            <div class="barra-resumo">
+                <span class="barra-qtd" id="barra-qtd">0 itens</span>
+                <span class="barra-desconto" id="barra-desconto" hidden></span>
+                <strong class="barra-total" id="barra-total">R$ 0,00</strong>
+            </div>
+            <button type="button" class="botao botao-enviar" id="botao-enviar">
+                Enviar pelo WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <p class="pedido-erro" id="pedido-erro" role="alert" hidden></p>
+    <p class="pedido-aviso" id="pedido-aviso" role="status" hidden></p>
+    <div class="pedido-enviado" id="pedido-enviado" hidden>
+        <div class="container pedido-enviado-conteudo">
+            <h2>Pedido pronto!</h2>
+            <p>A conversa do WhatsApp foi aberta com o seu pedido já escrito. É só revisar e tocar em enviar.</p>
+            <p class="pedido-enviado-aviso" id="pedido-enviado-aviso" hidden>
+                Se o WhatsApp não abriu, use o botão abaixo.
+            </p>
+            <div class="pedido-enviado-acoes">
+                <a class="botao" id="pedido-link" href="#" target="_blank" rel="noopener">Abrir no WhatsApp</a>
+                <button type="button" class="botao botao-pequeno" id="pedido-limpar">Começar outro pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dados-menu.js"></script>
+    <script src="pedido.js"></script>
+</body>
+
+</html>
