@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="S.O.S Lanches Delivery">
+  <defs>
+    <linearGradient id="sos-vermelho" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#e0333a"/>
+      <stop offset="1" stop-color="#a8171d"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="200" cy="200" r="200" fill="url(#sos-vermelho)"/>
+  <circle cx="200" cy="200" r="183" fill="none" stroke="#ffc233" stroke-width="6"/>
+
+  <!-- Hambúrguer -->
+  <g>
+    <!-- pão superior -->
+    <path d="M125 142a75 56 0 0 1 150 0Z" fill="#e8a33d"/>
+    <path d="M125 142a75 56 0 0 1 150 0Z" fill="#000" opacity=".07"/>
+    <!-- gergelim -->
+    <g fill="#fff6e0" opacity=".9">
+      <ellipse cx="176" cy="108" rx="6" ry="3.4" transform="rotate(-18 176 108)"/>
+      <ellipse cx="210" cy="98" rx="6" ry="3.4" transform="rotate(12 210 98)"/>
+      <ellipse cx="232" cy="122" rx="6" ry="3.4" transform="rotate(-8 232 122)"/>
+    </g>
+    <!-- alface -->
+    <path d="M124 144q13-13 26 0t26 0 26 0 26 0 26 0 26 0" fill="none" stroke="#7cb342" stroke-width="9" stroke-linecap="round"/>
+    <!-- queijo -->
+    <path d="M132 150h136l-18 20h-30l-20-14-20 14h-30Z" fill="#fbc02d"/>
+    <!-- hambúrguer -->
+    <rect x="128" y="168" width="144" height="26" rx="13" fill="#6d4c41"/>
+    <!-- pão inferior -->
+    <path d="M138 196h124a20 20 0 0 1-20 20H158a20 20 0 0 1-20-20Z" fill="#e8a33d"/>
+  </g>
+
+  <!-- S.O.S -->
+  <text x="200" y="276" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+    font-size="62" font-weight="900" fill="#ffc233" textLength="224" lengthAdjust="spacingAndGlyphs">S.O.S</text>
+
+  <!-- LANCHES -->
+  <rect x="78" y="286" width="244" height="52" rx="10" fill="#ffffff"/>
+  <text x="200" y="322" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+    font-size="32" font-weight="900" fill="#c1121f" textLength="212" lengthAdjust="spacingAndGlyphs">LANCHES</text>
+
+  <!-- Delivery -->
+  <text x="200" y="362" text-anchor="middle" font-family="'Brush Script MT','Segoe Script',cursive" font-style="italic"
+    font-size="34" font-weight="700" fill="#ffc233" textLength="140" lengthAdjust="spacingAndGlyphs">Delivery</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="S.O.S Lanches">
+  <defs>
+    <linearGradient id="sos-vermelho" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e0333a"/>
+      <stop offset="1" stop-color="#a8171d"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="22" fill="url(#sos-vermelho)"/>
+  <rect x="5" y="5" width="86" height="86" rx="18" fill="none" stroke="#ffc233" stroke-width="2.5"/>
+  <text x="48" y="45" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+    font-size="30" font-weight="900" fill="#ffc233" textLength="66" lengthAdjust="spacingAndGlyphs">S.O.S</text>
+  <rect x="9" y="52" width="78" height="26" rx="5" fill="#ffffff"/>
+  <text x="48" y="70.5" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+    font-size="16" font-weight="900" fill="#c1121f" textLength="66" lengthAdjust="spacingAndGlyphs">LANCHES</text>
+</svg>
