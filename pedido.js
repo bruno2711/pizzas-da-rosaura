@@ -5,9 +5,9 @@
 (function () {
     'use strict';
 
-    const P = window.SOS;
+    const P = window.PIZZARIA;
     const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-    const CHAVE = 'pedido-sos-lanches';
+    const CHAVE = 'pedido-rosaura';
 
     /* ---------- Estado ---------- */
     const carrinho = new Map(); // id do item -> quantidade
@@ -29,7 +29,7 @@
         return brl.format(c / 100);
     }
 
-    // Converte "4591234567" ou "(51) 8202-2624" em 555182022624
+    // Converte "4591234567" ou "(51) 99507-4006" em 5545995074006
     function telefoneParaLink(valor) {
         const digitos = valor.replace(/\D/g, '');
         if (digitos.startsWith('55')) return digitos;
@@ -54,24 +54,13 @@
         });
     }
 
-    // Os grupos vêm da ordem das chaves em dados-menu.js: incluir um
-    // bloco novo lá cria a seção correspondente aqui, sem tocar neste arquivo.
-    const GRUPOS = Object.keys(P.cardapio);
-    GRUPOS.forEach((grupo) => registrar(grupo, P.cardapio[grupo]));
+    registrar('salgadas', P.cardapio.salgadas);
+    registrar('doces', P.cardapio.doces);
 
     /* ---------- Render: cardápio selecionável ---------- */
-    function tituloGrupo(grupo) {
-        const mapa = P.titulosMenu || {};
-        if (mapa[grupo]) return mapa[grupo];
-        return grupo.charAt(0).toUpperCase() + grupo.slice(1);
-    }
-
     function renderizarMenu() {
-        const raiz = $('#lista-menu');
-        if (!raiz) return;
-        raiz.innerHTML = '';
-
-        GRUPOS.forEach((grupo, indice) => {
+        ['salgadas', 'doces'].forEach((grupo) => {
+            const alvo = $(`#lista-${grupo}`);
             const porCategoria = new Map();
 
             catalogo.filter((i) => i.grupo === grupo).forEach((item) => {
@@ -79,20 +68,7 @@
                 porCategoria.get(item.categoria).push(item);
             });
 
-            const bloco = document.createElement('div');
-            // o painel dourado alterna entre os blocos para separar os grupos
-            bloco.className = indice % 2 ? 'bloco-menu bloco-menu-doces' : 'bloco-menu';
-
-            const tituloBloco = document.createElement('h2');
-            tituloBloco.className = 'bloco-menu-titulo';
-            tituloBloco.textContent = tituloGrupo(grupo);
-            bloco.appendChild(tituloBloco);
-
-            const alvo = document.createElement('div');
-            alvo.className = 'grade-selecao';
-            alvo.id = `lista-${grupo}`;
-            bloco.appendChild(alvo);
-
+            alvo.innerHTML = '';
             porCategoria.forEach((itens, categoria) => {
                 const grupoEl = document.createElement('div');
                 grupoEl.className = 'grupo-selecao';
@@ -130,8 +106,6 @@
 
                 alvo.appendChild(grupoEl);
             });
-
-            raiz.appendChild(bloco);
         });
     }
 
@@ -345,7 +319,7 @@
         const entrega = form.modalidade.value === 'entrega';
 
         const L = [];
-        L.push('🍔 *PEDIDO — ' + P.nome + '*');
+        L.push('🍕 *PEDIDO — ' + P.nome + '*');
         L.push('');
 
         L.push('*ITENS*');

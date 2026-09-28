@@ -1,25 +1,24 @@
 /* =========================================================
-   S.O.S Lanches — sistema visual
+   Pizzas da Rosaura — sistema visual
    Tokens → base → layout → componentes → responsivo
    ========================================================= */
 
 /* ---------- 1. Tokens ---------- */
 :root {
-    --marca: #cb262d;
-    --marca-clara: #e0333a;
-    --marca-escura: #8e151b;
-    --creme: #fffaf3;
-    --creme-escuro: #fdf0e2;
-    --dourado: #ffc233;
-    --dourado-rgb: 255, 194, 51;
-    --texto: #24120f;
-    --texto-suave: #705852;
-    --borda: #f0dcc6;
+    --marca: #6c1b22;
+    --marca-clara: #86252e;
+    --marca-escura: #4a1218;
+    --creme: #fdf7ee;
+    --creme-escuro: #f7ecdd;
+    --bege: #fdcda2;
+    --texto: #2b1a17;
+    --texto-suave: #6b5148;
+    --borda: #e8d8c6;
 
     --raio: 14px;
     --raio-pequeno: 9px;
-    --sombra: 0 2px 4px rgba(58, 20, 18, .05), 0 12px 28px rgba(58, 20, 18, .09);
-    --sombra-alta: 0 18px 45px rgba(58, 20, 18, .20);
+    --sombra: 0 2px 4px rgba(76, 40, 32, .05), 0 12px 28px rgba(76, 40, 32, .08);
+    --sombra-alta: 0 18px 45px rgba(76, 40, 32, .18);
     --largura: 1080px;
     --altura-topo: 68px;
     --transicao: 180ms ease;
@@ -145,7 +144,7 @@ ul {
 .marca-logo {
     width: 42px;
     height: 42px;
-    border-radius: 12px;
+    border-radius: 50%;
     flex-shrink: 0;
 }
 
@@ -172,7 +171,7 @@ ul {
 
 .menu-l-links a:hover {
     color: #fff;
-    border-bottom-color: var(--dourado);
+    border-bottom-color: var(--bege);
 }
 
 .menu {
@@ -244,7 +243,7 @@ ul {
 }
 
 .botao-claro {
-    background: var(--dourado);
+    background: var(--bege);
     color: var(--marca-escura);
 }
 
@@ -278,7 +277,7 @@ ul {
 /* ---------- 5. Hero ---------- */
 .hero {
     background:
-        radial-gradient(120% 90% at 88% 12%, rgba(var(--dourado-rgb), .28) 0%, transparent 58%),
+        radial-gradient(120% 90% at 88% 12%, rgba(253, 205, 162, .28) 0%, transparent 58%),
         linear-gradient(150deg, var(--marca-clara) 0%, var(--marca) 52%, var(--marca-escura) 100%);
     color: #fff;
     padding: 76px 0 88px;
@@ -299,7 +298,7 @@ ul {
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--marca);
-    background: var(--dourado);
+    background: var(--bege);
     padding: 6px 14px;
     border-radius: 999px;
     margin-bottom: 18px;
@@ -391,18 +390,6 @@ ul {
     margin-bottom: 38px;
 }
 
-.aviso-cardapio {
-    background: rgba(var(--dourado-rgb), .22);
-    border: 1px solid var(--dourado);
-    border-left: 5px solid var(--dourado);
-    border-radius: var(--raio);
-    color: var(--marca-escura);
-    font-weight: 600;
-    max-width: 68ch;
-    padding: 14px 18px;
-    margin-bottom: 32px;
-}
-
 /* ---------- 7. Cardápio ---------- */
 .secao-menu {
     background: var(--creme-escuro);
@@ -416,14 +403,14 @@ ul {
     column-gap: 24px;
 }
 
-/* Cada bloco tem painel próprio, senão as categorias do grupo
-   seguinte se misturam no meio do anterior. */
+/* Salgadas e doces são blocos separados: o doce ganha um painel bege
+   próprio, senão as pizzas doces se misturam no meio das salgadas. */
 .menu-bloco + .menu-bloco {
     margin-top: 58px;
 }
 
 .menu-bloco-doces {
-    background: rgba(var(--dourado-rgb), .24);
+    background: rgba(253, 205, 162, .26);
     border: 1px solid var(--borda);
     border-radius: var(--raio);
     padding: 30px 28px 6px;
@@ -737,7 +724,7 @@ a.contato-item:hover {
     }
 
     .menu-l-links a:hover {
-        border-bottom-color: var(--dourado);
+        border-bottom-color: var(--bege);
     }
 
     .menu .botao {
@@ -902,7 +889,7 @@ a.contato-item:hover {
 
 .opcao:has(input:checked) {
     border-color: var(--marca);
-    background: rgba(var(--dourado-rgb), .2);
+    background: rgba(253, 205, 162, .2);
 }
 
 .opcao:has(input:focus-visible) {
@@ -1005,7 +992,7 @@ a.contato-item:hover {
 }
 
 .bloco-menu-doces {
-    background: rgba(var(--dourado-rgb), .2);
+    background: rgba(253, 205, 162, .22);
     border: 1px solid var(--borda);
     border-radius: var(--raio);
     padding: 22px 20px 4px;
@@ -1043,12 +1030,12 @@ a.contato-item:hover {
     gap: 12px;
     padding: 9px 10px;
     border-radius: var(--raio-pequeno);
-    border-bottom: 1px dashed rgba(240, 220, 198, .9);
+    border-bottom: 1px dashed rgba(232, 216, 198, .8);
     transition: background var(--transicao);
 }
 
 .linha-item.linha-ativa {
-    background: rgba(var(--dourado-rgb), .4);
+    background: rgba(253, 205, 162, .45);
 }
 
 .linha-info {
@@ -1151,7 +1138,7 @@ a.contato-item:hover {
 }
 
 .botao-enviar {
-    background: var(--dourado);
+    background: var(--bege);
     color: var(--marca-escura);
     flex-shrink: 0;
 }
@@ -1301,7 +1288,7 @@ a.contato-item:hover {
 .barra-desconto {
     font-size: .84rem;
     font-weight: 700;
-    color: var(--dourado);
+    color: var(--bege);
 }
 
 /* ---------- Página de promoções ---------- */
@@ -1398,7 +1385,7 @@ a.contato-item:hover {
 
 .menu-l-links a[aria-current="page"] {
     color: #fff;
-    border-bottom-color: var(--dourado);
+    border-bottom-color: var(--bege);
 }
 
 /* ---------- Confirmação de envio ---------- */
@@ -1409,7 +1396,7 @@ a.contato-item:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(36, 18, 15, .62);
+    background: rgba(43, 26, 23, .62);
     backdrop-filter: blur(3px);
     padding: 20px;
 }
@@ -1437,7 +1424,7 @@ a.contato-item:hover {
 .pedido-enviado-aviso {
     margin-top: 14px;
     padding: 12px 16px;
-    background: rgba(var(--dourado-rgb), .5);
+    background: rgba(253, 205, 162, .5);
     border-radius: var(--raio-pequeno);
     color: var(--marca-escura) !important;
     font-weight: 600;

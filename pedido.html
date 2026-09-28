@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faça seu pedido | S.O.S Lanches</title>
-    <meta name="description" content="Monte seu pedido de lanches na S.O.S Lanches, com entrega ou retirada, e envie direto pelo WhatsApp.">
-    <meta name="theme-color" content="#cb262d">
+    <title>Faça seu pedido | Pizzas da Rosaura</title>
+    <meta name="description" content="Monte seu pedido de pizza na Pizzas da Rosaura, com entrega ou retirada, e envie direto pelo WhatsApp.">
+    <meta name="theme-color" content="#6c1b22">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -15,8 +15,8 @@
     <header class="topo">
         <div class="container topo-conteudo">
             <a href="index.html" class="marca">
-                <img class="marca-logo" src="images/sos-logo.svg" alt="">
-                <span class="marca-nome">S.O.S Lanches</span>
+                <img class="marca-logo" src="images/104330158_2083961038416323_351394347251335109_n.jpg" alt="">
+                <span class="marca-nome">Pizzas da Rosaura</span>
             </a>
             <nav class="pedido-menu" aria-label="Navegação principal">
                 <a class="botao botao-claro" href="index.html">Voltar ao site</a>
@@ -64,7 +64,7 @@
             <fieldset class="etapa">
                 <legend class="etapa-titulo">
                     <span class="etapa-num">2</span>
-                    <span>Unidade de entrega ou retirada</span>
+                    <span>Em qual unidade?</span>
                 </legend>
                 <div class="opcoes opcoes-coluna" id="opcoes-unidade"></div>
             </fieldset>
@@ -104,8 +104,15 @@
                     <span>Seu pedido</span>
                 </legend>
 
-                <!-- As seções são geradas a partir das chaves de cardapio em dados-menu.js -->
-                <div id="lista-menu"></div>
+                <div class="bloco-menu" id="menu-salgadas">
+                    <h2 class="bloco-menu-titulo">Pizzas salgadas</h2>
+                    <div class="grade-selecao" id="lista-salgadas"></div>
+                </div>
+
+                <div class="bloco-menu bloco-menu-doces" id="menu-doces">
+                    <h2 class="bloco-menu-titulo">Pizzas doces</h2>
+                    <div class="grade-selecao" id="lista-doces"></div>
+                </div>
             </fieldset>
 
             <!-- 5. Pagamento -->
@@ -146,7 +153,7 @@
                     <label class="campo">
                         <span class="campo-rotulo">Telefone <span class="obrigatorio">*</span></span>
                         <input type="tel" name="telefone" autocomplete="tel" inputmode="tel"
-                            placeholder="(51) 8202-2624">
+                            placeholder="(51) 90000-0000">
                     </label>
                     <label class="campo campo-largo">
                         <span class="campo-rotulo">Observações <span class="campo-opcional">opcional</span></span>

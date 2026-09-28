@@ -1,23 +1,15 @@
 /* =========================================================
-   S.O.S Lanches — fonte única de verdade.
-   Consumido por pedido.html e promocoes.html. O index.html mantém
-   o cardápio em HTML estático de propósito: é o que o Google rastreia.
-   Se mudar um item ou preço aqui, mude também no index.html.
+   Dados da pizzaria — fonte única de verdade.
+   Consumido por pedido.html. O index.html mantém o cardápio
+   em HTML estático de propósito: é o que o Google rastreia.
+   Se mudar um preço aqui, mude também no index.html.
    ========================================================= */
 
-window.SOS = {
-    nome: 'S.O.S Lanches',
-    whatsapp: '555182022624',
-    telefone: '(51) 8202-2624',
-    instagram: 'https://www.instagram.com/s.o.s.lanchees/',
-    atendimento: 'Consulte horários e disponibilidade no Instagram',
-
-    /* Rótulo de cada seção do cardápio, na ordem em que aparecem em cardapio */
-    titulosMenu: {
-        lanches: 'Lanches',
-        porcoes: 'Porções e acompanhamentos',
-        bebidas: 'Bebidas',
-    },
+window.PIZZARIA = {
+    nome: 'Pizzas da Rosaura',
+    whatsapp: '5551995074006',
+    telefone: '(51) 3178.8425',
+    atendimento: 'Sex a Dom, das 19h às 00h',
 
     /* ---------- Ajuste o que valer para a casa ---------- */
     config: {
@@ -26,19 +18,37 @@ window.SOS = {
         // 0 = sem mínimo. Ex.: 30 para "pedido mínimo de R$ 30".
         pedidoMinimo: 0,
         // Mensagem opcional que entra no final do pedido.
-        aviso: 'Pedido feito pelo site. Por favor confirmar disponibilidade, valores e prazo.',
+        aviso: 'Pedido feito pelo site. Por favor confirmar disponibilidade e prazo.',
     },
 
-    /* ---------- Endereço ---------- */
+    /* ---------- Unidades ---------- */
     unidades: [
         {
-            id: 'principal',
-            nome: 'S.O.S Lanches — Delivery e retirada',
-            endereco: 'Av. Castelo Branco, 2805 - Colina',
+            id: 'eldorado',
+            nome: 'Eldorado do Sul — Centro',
+            endereco: 'R. Oito de Junho, 156 - Centro',
+            cidade: 'Eldorado do Sul - RS, 92990-000',
+            entrega: true,
+            retirada: true,
+            mapa: 'https://www.google.com/maps/search/?api=1&query=R.+Oito+de+Junho,+156+-+Centro,+Eldorado+do+Sul+-+RS,+92990-000',
+        },
+        {
+            id: 'colina',
+            nome: 'Guaíba — Colina',
+            endereco: 'Av. Antenor Caldas, 282 - Colina',
+            cidade: 'Guaíba - RS',
+            entrega: true,
+            retirada: true,
+            mapa: 'https://www.google.com/maps/search/?api=1&query=Av.+Antenor+Caldas,+282+-+Colina,+Gua%C3%ADba+-+RS',
+        },
+        {
+            id: 'iolanda',
+            nome: 'Guaíba — Jardim Iolanda',
+            endereco: 'Av. Adão Foques, 1284 - Jardim Iolanda',
             cidade: 'Guaíba - RS, 92500-000',
             entrega: true,
             retirada: true,
-            mapa: 'https://www.google.com/maps/search/?api=1&query=Av.+Castelo+Branco,+2805+-+Colina,+Gua%C3%ADba+-+RS,+92500-000',
+            mapa: 'https://www.google.com/maps/search/?api=1&query=Av.+Ad%C3%A3o+Foques,+1284+-+Jardim+Iolanda,+Gua%C3%ADba+-+RS,+92500-000',
         },
     ],
 
@@ -50,7 +60,7 @@ window.SOS = {
          'percentual' → desconto é a % (ex.: 10 = 10% no subtotal)
          'valor'     → desconto em centavos (ex.: 1000 = R$ 10,00)
          'frete'     → entrega grátis, ignora o desconto
-         'item'      → desconto em centavos, aplicado por item,
+         'item'      → desconto em centavos, aplicado por pizza,
                        em TODO item cujo nome case com 'alvo'
        alvo: nome do item, só no tipo 'item'
        minimo: pedido mínimo em centavos para o cupom valer
@@ -84,11 +94,11 @@ window.SOS = {
             ativo: true,
         },
         {
-            codigo: 'BIGSOS5',
+            codigo: 'CALABRESA6',
             tipo: 'item',
-            alvo: 'X-Big S.O.S',
-            desconto: 500,
-            descricao: 'R$ 5,00 de desconto no X-Big S.O.S',
+            alvo: 'Calabresa',
+            desconto: 600,
+            descricao: 'R$ 6,00 de desconto em toda pizza de calabresa',
             minimo: 0,
             validoAte: '2027-12-31',
             ativo: true,
@@ -108,72 +118,83 @@ window.SOS = {
 
     /* ---------- Cardápio ----------
        Preços em CENTAVOS (inteiro). 26.00 reais = 2600.
-       Isso evita erro de ponto flutuante na soma do carrinho.
-
-       ATENÇÃO: os preços ainda não foram cadastrados — estão em 0.
-       Troque cada 0 pelo valor real em centavos antes de publicar. */
+       Isso evita erro de ponto flutuante na soma do carrinho. */
     cardapio: {
-        lanches: [
+        salgadas: [
             {
-                categoria: 'Clássicos',
+                categoria: 'Tradicionais',
                 itens: [
-                    { nome: 'X-Salada', preco: 0 },
-                    { nome: 'X-Bacon', preco: 0 },
-                    { nome: 'X-Egg', preco: 0 },
-                    { nome: 'X-Frango', preco: 0 },
-                    { nome: 'X-Calabresa', preco: 0 },
+                    { nome: 'Alho e Óleo', preco: 2600 },
+                    { nome: 'Atum', preco: 3300 },
+                    { nome: 'Bacon', preco: 2500 },
+                    { nome: 'Calabresa', preco: 2800 },
+                    { nome: 'Cebola na Manteiga', preco: 2800 },
+                    { nome: 'Frango', preco: 2800 },
+                    { nome: 'Frango com Catupiry', preco: 3200 },
+                    { nome: 'Linguiça', preco: 3200 },
+                    { nome: 'Margherita', preco: 2500 },
+                    { nome: 'Portuguesa', preco: 3200 },
+                    { nome: 'Quatro Queijos', preco: 3300 },
+                    { nome: 'Tropicana', preco: 2700 },
+                    { nome: 'Presunto', preco: 2800 },
                 ],
             },
             {
                 categoria: 'Especiais',
                 itens: [
-                    { nome: 'X-Tudo', preco: 0 },
-                    { nome: 'X-Big S.O.S', preco: 0 },
-                    { nome: 'X-Bacon Egg', preco: 0 },
-                    { nome: 'X-Frango Defumado', preco: 0 },
-                    { nome: 'X-Egg Salad', preco: 0 },
+                    { nome: 'Brócolis, Salmão e Milho', preco: 3500 },
+                    { nome: 'Calabresa c/ Cheddar', preco: 3200 },
+                    { nome: 'Brócolis c/ Bacon', preco: 3200 },
+                ],
+            },
+            {
+                categoria: 'Super Especiais',
+                itens: [
+                    { nome: 'Bacon c/ Molho Branco', preco: 3500 },
+                    { nome: '4 Queijos c/ Bacon', preco: 3700 },
+                    { nome: 'Siciliana', preco: 3400 },
+                    { nome: 'Napolitana', preco: 3300 },
+                    { nome: 'Bacon c/ Milho', preco: 3100 },
+                    { nome: 'Bacon', preco: 3200 },
+                    { nome: 'Cebola c/ Bacon', preco: 3000 },
+                ],
+            },
+            {
+                categoria: 'Super Especiais II',
+                itens: [
+                    { nome: 'Filé c/ Queijo', preco: 3300 },
+                    { nome: 'Filé e Calabresa c/ Molho Branco', preco: 3500 },
+                    { nome: 'Filé c/ Nata', preco: 3200 },
+                    { nome: 'Filé c/ Catupiry', preco: 3200 },
+                    { nome: 'Peperoni c/ Catupiry', preco: 3000 },
+                    { nome: 'Strogonoff de Carne', preco: 3800 },
+                    { nome: 'Strogonoff de Frango', preco: 3600 },
+                    { nome: 'Four Cheeses', preco: 3500 },
                 ],
             },
         ],
 
-        porcoes: [
+        doces: [
             {
-                categoria: 'Porções',
+                categoria: 'Doces Especiais',
                 itens: [
-                    { nome: 'Batata frita', preco: 0 },
-                    { nome: 'Batata com cheddar e bacon', preco: 0 },
-                    { nome: 'Onion rings', preco: 0 },
-                    { nome: 'Nuggets de frango', preco: 0 },
-                    { nome: 'Mandioca frita', preco: 0 },
+                    { nome: 'Doce de Leite c/ Sorvete', preco: 2500 },
+                    { nome: 'Brigadeiro', preco: 2300 },
+                    { nome: 'Chocolate Branco c/ Morango', preco: 3000 },
+                    { nome: 'Chocolate Preto c/ Morango', preco: 3000 },
+                    { nome: 'Chocolate Branco c/ Avelã', preco: 2500 },
+                    { nome: 'Pistache c/ Chocolate Branco', preco: 3100 },
                 ],
             },
             {
-                categoria: 'Combos',
+                categoria: 'Doces',
                 itens: [
-                    { nome: 'Combo S.O.S — lanche, batata e refri', preco: 0 },
-                    { nome: 'Combo Duplo — dois lanches e porção', preco: 0 },
-                ],
-            },
-        ],
-
-        bebidas: [
-            {
-                categoria: 'Refrigerantes',
-                itens: [
-                    { nome: 'Coca-Cola', preco: 0 },
-                    { nome: 'Guaraná', preco: 0 },
-                    { nome: 'Fanta Laranja', preco: 0 },
-                    { nome: 'Sprite', preco: 0 },
-                ],
-            },
-            {
-                categoria: 'Sucos e águas',
-                itens: [
-                    { nome: 'Suco de laranja', preco: 0 },
-                    { nome: 'Suco de maracujá', preco: 0 },
-                    { nome: 'Suco de limão', preco: 0 },
-                    { nome: 'Água sem gás', preco: 0 },
-                    { nome: 'Água com gás', preco: 0 },
+                    { nome: 'Chocos', preco: 2100 },
+                    { nome: 'Brigadeiro', preco: 2300 },
+                    { nome: 'Bomba de Leite Ninho c/ Branco', preco: 3000 },
+                    { nome: 'Chocolate Preto c/ Avelã', preco: 2500 },
+                    { nome: 'Doce de Leite c/ Doce de Leite', preco: 2500 },
+                    { nome: 'Prestígio', preco: 2400 },
                 ],
             },
         ],
